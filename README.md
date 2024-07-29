@@ -6,3 +6,6 @@
 npm i
 
 ```
+
+
+### Este proyecto es un de practica
