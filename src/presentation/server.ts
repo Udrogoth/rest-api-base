@@ -1,4 +1,5 @@
 import express, { Router } from 'express'
+import path from 'path';
 
 
 interface Options {
@@ -28,7 +29,7 @@ export class Server {
     async start() {
         //* Middlewares
         this.app.use(express.json());
-        
+
 
         //* public folder
         this.app.use(express.static(this.publicPath))
@@ -42,6 +43,12 @@ export class Server {
         });
 
 
+
+        //*SPA
+        this.app.get('*', (req, res) => {
+            const indexPath = path.join(__dirname + `../../..${this.publicPath}/index.html`);
+            res.sendFile(indexPath);
+        })
 
     }
     public close() {
